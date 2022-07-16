@@ -2751,7 +2751,7 @@ invoked by each side as appropriate.  There should be no distinction, internally
 and client.  This will ensure that prediction behaves appropriately.
 */
 
-void PM_Move ( struct playermove_s *ppmove, int server )
+void PM_Move ( struct playermove_s *ppmove, qboolean server )
 {
 	assert( pm_shared_initialized );
 

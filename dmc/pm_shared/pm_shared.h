@@ -21,7 +21,7 @@
 #pragma once
 
 void PM_Init( struct playermove_s *ppmove );
-void PM_Move ( struct playermove_s *ppmove, int server );
+void PM_Move ( struct playermove_s *ppmove, qboolean server );
 char PM_FindTextureType( char *name );
 
 // Spectator Movement modes (stored in pev->iuser1, so the physics code can get at them)

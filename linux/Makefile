@@ -67,12 +67,8 @@ AR=ar
 LIBEXT=a
 MAKE+= -j8
 
-MAKE_HL_LIB=$(MAKE) -f Makefile.hldll
 MAKE_DMC_LIB=$(MAKE) -f Makefile.dmcdll
-MAKE_RICOCHET_LIB=$(MAKE) -f Makefile.ricochetdll
-MAKE_HL_CDLL=$(MAKE) -f Makefile.hl_cdll
 MAKE_DMC_CDLL=$(MAKE) -f Makefile.dmc_cdll
-MAKE_RICOCHET_CDLL=$(MAKE) -f Makefile.ricochet_cdll
 
 #############################################################################
 # SETUP AND BUILD
@@ -83,8 +79,9 @@ all: build_dir targets
 TARGETS=
 
 TARGETS+= \
- 	dmc \
-	dmc_cdll \
+ 	dmc 
+#\
+#	dmc_cdll \
 
 build_dir:
 	-mkdir $(BUILD_DIR);
