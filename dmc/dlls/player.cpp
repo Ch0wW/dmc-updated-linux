@@ -1742,7 +1742,7 @@ void CBasePlayer::PowerUpThink(void)
 
 	if ( m_iQuakeItems & IT_QUAD && m_flSuperDamageFinished <= gpGlobals->time + 3 && !m_bPlayedQuadSound )
 	{
-		ClientPrint(pev, HUD_PRINTNOTIFY, "#Quad_Damage_Off" );
+		ClientPrint(pev, HUD_PRINTCENTER, "#Quad_Damage_Off" );
 		EMIT_SOUND( ENT(pev), CHAN_ITEM, "items/damage2.wav", 1, ATTN_NORM );
 
 		m_bPlayedQuadSound = TRUE;
@@ -1799,7 +1799,7 @@ void CBasePlayer::PowerUpThink(void)
 
 	if ( m_iQuakeItems & IT_SUIT && m_flRadsuitFinished <= gpGlobals->time + 3 && !m_bPlayedEnvSound )
 	{
-		ClientPrint(pev, HUD_PRINTNOTIFY, "#BioSuit_Off" );
+		ClientPrint(pev, HUD_PRINTCENTER, "#BioSuit_Off" );
 		EMIT_SOUND( ENT(pev), CHAN_ITEM, "items/suit2.wav", 1, ATTN_NORM );
 
 		m_bPlayedEnvSound = TRUE;
@@ -1858,7 +1858,7 @@ void CBasePlayer::PowerUpThink(void)
 
 	if ( m_iQuakeItems & IT_INVISIBILITY && m_flInvisibleFinished <= gpGlobals->time + 3 && !m_bPlayedInvSound )
 	{
-		ClientPrint(pev, HUD_PRINTNOTIFY, "#Ring_Shadows_Off" );
+		ClientPrint(pev, HUD_PRINTCENTER, "#Ring_Shadows_Off" );
 		EMIT_SOUND( ENT(pev), CHAN_ITEM, "items/inv2.wav", 1, ATTN_NORM );
 
 		m_bPlayedInvSound = TRUE;
@@ -1901,7 +1901,7 @@ void CBasePlayer::PowerUpThink(void)
 
 	if ( m_iQuakeItems & IT_INVULNERABILITY && m_flInvincibleFinished <= gpGlobals->time + 3 && !m_bPlayedProtectSound )
 	{
-		ClientPrint(pev, HUD_PRINTNOTIFY, "#Protection_Off" );
+		ClientPrint(pev, HUD_PRINTCENTER, "#Protection_Off" );
 		EMIT_SOUND( ENT(pev), CHAN_ITEM, "items/protect2.wav", 1, ATTN_NORM );
 
 		m_bPlayedProtectSound = TRUE;
@@ -2826,7 +2826,13 @@ void CBasePlayer::Spawn( void )
 	m_flFieldOfView		= 0.5;// some monsters use this to determine whether or not the player is looking at them.
 
 	m_bloodColor	= BLOOD_COLOR_RED;
-	m_flNextAttack	= UTIL_WeaponTimeBase();
+
+	// Ch0wW: Don't shoot a rocket on our face on arcade mode...
+	if (arcademode.value)
+		m_flNextAttack	= 0.3;
+	else
+		m_flNextAttack	= UTIL_WeaponTimeBase();
+
 	StartSneaking();
 
 	m_iFlashBattery = 99;

@@ -23,6 +23,7 @@
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
+#include "game.h"
 #include "player.h"
 #include "weapons.h"
 #include "gamerules.h"
@@ -124,6 +125,12 @@ void QuakeClassicPrecache( void )
 // Return the ID of the best weapon being carried by the player
 int CBasePlayer::W_BestWeapon()
 {
+
+	// Ch0wW - Rocket Launcher is the goto weapon in arcade mode!
+	if (arcademode.value) {
+		return IT_ROCKET_LAUNCHER;
+	}
+
 	if (pev->waterlevel <= 1 && m_iAmmoCells >= 1 && (m_iQuakeItems & IT_LIGHTNING) )
 		return IT_LIGHTNING;
 	else if(m_iAmmoNails >= 2 && (m_iQuakeItems & IT_SUPER_NAILGUN) )

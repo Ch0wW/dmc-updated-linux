@@ -150,8 +150,9 @@ int CQuakeGun::SuperDamageSound()
 	{
 		if ( m_pPlayer->m_flNextQuadSound < gpGlobals->time)
 		{
+			EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/damage3.wav", 1, ATTN_NORM);
 			m_pPlayer->m_flNextQuadSound = gpGlobals->time + 1;
-				return 1;
+				return 0;	// Done on purpose
 		}
 	}
 

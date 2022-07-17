@@ -406,9 +406,20 @@ BOOL CHalfLifeMultiplay :: GetNextBestWeapon( CBasePlayer *pPlayer, CBasePlayerI
 
 //=========================================================
 //=========================================================
+
+extern int gmsgSayText;
+
 BOOL CHalfLifeMultiplay :: ClientConnected( edict_t *pEntity, const char *pszName, const char *pszAddress, char szRejectReason[ 128 ] )
 {
 	m_VoiceGameMgr.ClientConnected(pEntity);
+
+	char text[256];
+	sprintf( text, "- %s has connected\n", STRING(pEntity->v.netname) );
+	MESSAGE_BEGIN( MSG_ALL, gmsgSayText, NULL );
+		WRITE_BYTE( ENTINDEX(pEntity) );
+		WRITE_STRING( text );
+	MESSAGE_END();
+
 	return TRUE;
 }
 
