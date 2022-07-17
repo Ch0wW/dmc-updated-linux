@@ -40,7 +40,7 @@ public:
 	virtual int IPointsForKill( CBasePlayer *pAttacker, CBasePlayer *pKilled );
 	virtual void InitHUD( CBasePlayer *pl );
 	virtual void DeathNotice( CBasePlayer *pVictim, entvars_t *pKiller, entvars_t *pevInflictor );
-	const char *GetGameDescription( void ) override { return arcademode.value ? "Team DMC Arcade" : "DMC Teamplay"; }  // this is the game name that gets seen in the server browser
+	const char *GetGameDescription( void ) override { return arcademode.value ? "Team DMC Arcade" : "DMC - Teamplay"; }  // this is the game name that gets seen in the server browser
 	virtual void UpdateGameMode( CBasePlayer *pPlayer );  // the client needs to be informed of the current game mode
 	virtual void PlayerKilled( CBasePlayer *pVictim, entvars_t *pKiller, entvars_t *pInflictor );
 	virtual void Think ( void );
