@@ -19,6 +19,7 @@
 #include	"extdll.h"
 #include	"util.h"
 #include	"cbase.h"
+#include	"game.h"
 #include	"player.h"
 #include	"weapons.h"
 #include	"gamerules.h"
@@ -32,7 +33,6 @@ extern int g_iTeleNum;
 
 extern edict_t *EntSelectSpawnPoint( CBaseEntity *pPlayer );
 
-DLL_GLOBAL CGameRules*	g_pGameRules = NULL;
 extern DLL_GLOBAL BOOL	g_fGameOver;
 extern int gmsgDeathMsg;	// client dll messages
 extern int gmsgScoreInfo;
@@ -157,12 +157,12 @@ CGameRules *InstallGameRules( void )
 	}
 	else
 	{
-		if ( CVAR_GET_FLOAT( "mp_teamplay" ) > 0 )
+		if ( teamplay.value > 0 )
 		{
 			// teamplay
 			return new CHalfLifeTeamplay;
 		}
-		if ((int)gpGlobals->deathmatch == 1)
+		else if ((int)gpGlobals->deathmatch == 1)
 		{
 			// vanilla deathmatch
 			return new CHalfLifeMultiplay;

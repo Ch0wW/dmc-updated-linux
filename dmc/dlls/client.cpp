@@ -26,6 +26,7 @@
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
+#include "game.h"
 #include "saverestore.h"
 #include "player.h"
 #include "spectator.h"
@@ -633,6 +634,9 @@ void ParmsChangeLevel( void )
 
 	if ( pSaveData )
 		pSaveData->connectionCount = BuildChangeList( pSaveData->levelList, MAX_LEVEL_CONNECTIONS );
+
+	if ( g_pGameRules )
+		g_pGameRules->Think();
 }
 
 
@@ -647,7 +651,7 @@ void StartFrame( void )
 	if ( g_fGameOver )
 		return;
 
-	gpGlobals->teamplay = CVAR_GET_FLOAT("teamplay");
+	gpGlobals->teamplay = teamplay.value;
 	g_iSkillLevel = CVAR_GET_FLOAT("skill");
 	g_ulFrameCount++;
 }
@@ -877,7 +881,7 @@ const char *GetGameDescription()
 	if ( g_pGameRules ) // this function may be called before the world has spawned, and the game rules initialized
 		return g_pGameRules->GetGameDescription();
 	else
-		return "DMC";
+		return "DMUNKNOWNC";
 }
 
 /*
@@ -1812,6 +1816,6 @@ AllowLagCompensation
 */
 int AllowLagCompensation( void )
 {
-	return 0;
+	return 1;
 }
 

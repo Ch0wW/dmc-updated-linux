@@ -551,7 +551,6 @@ const char *CHalfLifeTeamplay::TeamWithFewestPlayers( void )
 	return pTeamName;
 }
 
-
 //=========================================================
 //=========================================================
 void CHalfLifeTeamplay::RecountTeams( void )

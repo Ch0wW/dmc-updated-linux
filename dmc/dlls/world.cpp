@@ -496,10 +496,8 @@ void CWorld :: Precache( void )
 	CVAR_SET_STRING("sv_airaccelerate", "0.7");
 
 	// Set up game rules
-	if (g_pGameRules)
-	{
-		delete g_pGameRules;
-	}
+	delete g_pGameRules;
+
 
 	g_pGameRules = InstallGameRules( );
 
