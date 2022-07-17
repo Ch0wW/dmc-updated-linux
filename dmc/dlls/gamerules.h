@@ -16,6 +16,8 @@
 // GameRules
 //=========================================================
 
+#include "game.h"
+
 //#include "weapons.h"
 //#include "items.h"
 class CBasePlayerItem;
@@ -72,7 +74,7 @@ public:
 	virtual BOOL IsDeathmatch( void ) = 0;//is this a deathmatch game?
 	virtual BOOL IsTeamplay( void ) { return FALSE; };// is this deathmatch game being played with team rules?
 	virtual BOOL IsCoOp( void ) = 0;// is this a coop game?
-	virtual const char *GetGameDescription( ) { return "DMC"; }  // this is the game name that gets seen in the server browser
+	virtual const char *GetGameDescription( ) { return arcademode.value ? "DMC - Arcade Mode" : "DMC"; }  // this is the game name that gets seen in the server browser
 	
 // Client connection/disconnection
 	virtual BOOL ClientConnected( edict_t *pEntity, const char *pszName, const char *pszAddress, char szRejectReason[ 128 ] ) = 0;// a client just connected to the server (player hasn't spawned yet)

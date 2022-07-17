@@ -28,7 +28,6 @@ cvar_t	timeleft	= {"mp_timeleft","0" , FCVAR_SERVER | FCVAR_UNLOGGED };	  // "  
 
 // multiplayer server rules
 cvar_t	teamplay	= {"mp_teamplay","0", FCVAR_SERVER };
-
 cvar_t	fraglimit	= {"mp_fraglimit","0", FCVAR_SERVER };
 cvar_t	timelimit	= {"mp_timelimit","0", FCVAR_SERVER };
 cvar_t	friendlyfire= {"mp_friendlyfire","0", FCVAR_SERVER };
@@ -42,6 +41,8 @@ cvar_t	teamlist = {"mp_teamlist","hgrunt;scientist", FCVAR_SERVER };
 cvar_t	teamoverride = {"mp_teamoverride","1" };
 cvar_t	defaultteam = {"mp_defaultteam","0" };
 cvar_t	allowmonsters={"mp_allowmonsters","0", FCVAR_SERVER };
+
+cvar_t arcademode={"mp_arcademode","0", FCVAR_SERVER };
 
 cvar_t  mp_chattime = {"mp_chattime","10", FCVAR_SERVER };
 
@@ -485,6 +486,8 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&allowmonsters);
 
 	CVAR_REGISTER (&mp_chattime);
+
+	CVAR_REGISTER (&arcademode);
 
 // REGISTER CVARS FOR SKILL LEVEL STUFF
 	// Agrunt

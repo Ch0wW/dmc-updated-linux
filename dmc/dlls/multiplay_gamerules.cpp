@@ -580,7 +580,23 @@ void CHalfLifeMultiplay :: PlayerSpawn( CBasePlayer *pPlayer )
 
 		// Start with shotgun and axe
 		pPlayer->GiveNamedItem( "weapon_quakegun" );
-		pPlayer->m_iQuakeItems |= (IT_SHOTGUN | IT_AXE);
+
+		if (arcademode.value)
+		{
+			pPlayer->m_iQuakeItems |= (IT_SHOTGUN | IT_AXE | IT_SUPER_SHOTGUN | IT_NAILGUN | IT_SUPER_NAILGUN | IT_GRENADE_LAUNCHER | IT_ROCKET_LAUNCHER | IT_ARMOR2);
+			pPlayer->m_iAmmoShells = 100;
+			pPlayer->m_iAmmoNails = 200;
+
+			pPlayer->pev->armortype = 0.5;
+			pPlayer->pev->armorvalue = 200;
+
+			pPlayer->m_iAmmoRockets = 100;
+
+		}
+		else {
+			pPlayer->m_iQuakeItems |= (IT_SHOTGUN | IT_AXE);
+		}
+		
 		pPlayer->m_iQuakeWeapon = pPlayer->W_BestWeapon();
 		pPlayer->W_SetCurrentAmmo();
 	}
